@@ -10,8 +10,14 @@ post '/vimhacks' do
         if e['message']
             # m = e['message']['text'].force_encoding(Encoding::ASCII_8BIT)
             m = e['message']['text']
-            if /^:vimhacks\s+(\S.*)$/ =~ m
-                re = v.search($1)
+            if /^:vimh(acks)?\s+(\S.*)$/ =~ m
+                v.search($1).map{ |x| x.to_s }.each do |h|
+                    re += h + "\n"
+                end
+            elsif /^:vimh(acks)?$/ =~ m
+                v.recent[0..8].map{ |x| x.to_s }.each do |h|
+                    re += h + "\n"
+                end
             end
         end
     end
