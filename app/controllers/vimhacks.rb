@@ -3,7 +3,7 @@ get '/vimhacks' do
 end
 
 post '/vimhacks' do
-  re = ''
+  re = []
   v = VimHacks.new
   JSON.parse(params[:json])["events"].each do |e|
     next unless e['message']
@@ -11,13 +11,13 @@ post '/vimhacks' do
     case m
     when /^:vimh(acks)?\s+(\S.*)$/
       v.search($1).map(&:to_s).each do |h|
-        re += h + "\n"
+        re << h
       end
     when /^:vimh(acks)?$/
       v.recent[0..8].map(&:to_s).each do |h|
-        re += h + "\n"
+        re << h
       end
     end
   end
-  re
+  re.join "\n"
 end
