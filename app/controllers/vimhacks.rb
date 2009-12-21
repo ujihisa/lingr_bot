@@ -10,7 +10,7 @@ post '/vimhacks' do
     m = e['message']['text']
     case m
     when /^:vimh(acks)?\s+(\S.*)$/
-      v.search($1).map(&:to_s).each do |h|
+      v.search($2).map(&:to_s).each do |h|
         re << h
       end
     when /^:vimh(acks)?$/
