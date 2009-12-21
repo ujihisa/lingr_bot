@@ -5,7 +5,7 @@ end
 post '/vimhacks' do
   re = []
   v = VimHacks.new
-  JSON.parse(params[:json])["events"].select {|e| e['message'] }.each do |e|
+  JSON.parse(params[:json])["events"].select {|e| e['message'] }.each {|e|
     case e['message']['text']
     when /^:vimh(acks)?\s+(\S.*)$/
       v.search($2).map(&:to_s).each do |h|
@@ -16,6 +16,6 @@ post '/vimhacks' do
         re << h
       end
     end
-  end
+  }
   re.join "\n"
 end
