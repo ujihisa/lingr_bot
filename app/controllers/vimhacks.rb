@@ -1,4 +1,4 @@
-get(a='/vimhacks'){"hi I'm a bot"}
+a='/vimhacks';get(a){"hi I'm a bot"}
 post(a){v=VimHacks.new
 JSON.parse(params[:json])["events"].select{|e|e['message']}.map{|e|case e['message']['text']
 when /^:vimh(acks)?\s+(\S.*)$/
