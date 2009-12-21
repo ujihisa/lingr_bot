@@ -9,11 +9,12 @@ post '/vimhacks' do
   json["events"].each do |e|
     next unless e['message']
     m = e['message']['text']
-    if /^:vimh(acks)?\s+(\S.*)$/ =~ m
+    case m
+    when /^:vimh(acks)?\s+(\S.*)$/
       v.search($1).map{ |x| x.to_s }.each do |h|
         re += h + "\n"
       end
-    elsif /^:vimh(acks)?$/ =~ m
+    when /^:vimh(acks)?$/
       v.recent[0..8].map{ |x| x.to_s }.each do |h|
         re += h + "\n"
       end
