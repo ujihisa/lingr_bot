@@ -1,5 +1,5 @@
 get '/vimhacks' do
-  'hi I\'m a bot'
+  "hi I'm a bot"
 end
 
 post '/vimhacks' do
