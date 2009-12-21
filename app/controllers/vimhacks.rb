@@ -7,13 +7,9 @@ post '/vimhacks' do
   JSON.parse(params[:json])["events"].select {|e| e['message'] }.inject([]) {|re, e|
     case e['message']['text']
     when /^:vimh(acks)?\s+(\S.*)$/
-      v.search($2).map(&:to_s).each do |h|
-        re << h
-      end
+      re += v.search($2).map(&:to_s)
     when /^:vimh(acks)?$/
-      v.recent[0..8].map(&:to_s).each do |h|
-        re << h
-      end
+      re += v.recent[0..8].map(&:to_s)
     end
     re
   }.join "\n"
