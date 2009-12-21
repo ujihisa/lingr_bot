@@ -11,5 +11,5 @@ post '/vimhacks' do
     when /^:vimh(acks)?$/
       v.recent[0..8]
     end.map(&:to_s)
-  }.inject(:+).join "\n"
+  }.flatten.compact.join("\n")
 end
