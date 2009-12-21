@@ -4,9 +4,8 @@ end
 
 post '/vimhacks' do
   re = ''
-  json = JSON.parse(params[:json])
   v = VimHacks.new
-  json["events"].each do |e|
+  JSON.parse(params[:json])["events"].each do |e|
     next unless e['message']
     m = e['message']['text']
     case m
