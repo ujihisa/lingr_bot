@@ -9,7 +9,7 @@ post '/vimhacks' do
     when /^:vimh(acks)?\s+(\S.*)$/
       v.search($2)
     when /^:vimh(acks)?$/
-      v.recent[0..8]
+      v.recent.take(9)
     end.map(&:to_s)
   }.flatten.compact.join("\n")
 end
