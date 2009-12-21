@@ -8,7 +8,6 @@ post '/vimhacks' do
   v = VimHacks.new
   json["events"].each do |e|
     next unless e['message']
-    # m = e['message']['text'].force_encoding(Encoding::ASCII_8BIT)
     m = e['message']['text']
     if /^:vimh(acks)?\s+(\S.*)$/ =~ m
       v.search($1).map{ |x| x.to_s }.each do |h|
