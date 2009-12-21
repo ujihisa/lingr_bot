@@ -10,11 +10,11 @@ post '/vimhacks' do
     m = e['message']['text']
     case m
     when /^:vimh(acks)?\s+(\S.*)$/
-      v.search($1).map{ |x| x.to_s }.each do |h|
+      v.search($1).map(&:to_s).each do |h|
         re += h + "\n"
       end
     when /^:vimh(acks)?$/
-      v.recent[0..8].map{ |x| x.to_s }.each do |h|
+      v.recent[0..8].map(&:to_s).each do |h|
         re += h + "\n"
       end
     end
